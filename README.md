@@ -196,5 +196,5 @@ LIB_SIXSV=./libsixsv.so python3 -m pytest -v
 ## License
 
 Copyright (C) 2025–2026 Yann.
-Distributed under the **GNU General Public License, version 2 or later** (GPL ≥ 2).
+Distributed under the **Unlicense** (Unlicense).
 See `COPYING` for the full text.
