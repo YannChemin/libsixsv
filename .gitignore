@@ -1,0 +1,24 @@
+# Compiled objects and libraries
+*.o
+*.a
+*.so
+*.so.*
+
+# Debian build artifacts
+debian/.debhelper/
+debian/tmp/
+debian/files
+debian/*.debhelper.log
+debian/*.substvars
+debian/debhelper-build-stamp
+debian/libsixsv1/
+debian/libsixsv-dev/
+
+# Test build artifacts
+testsuite/test_6sv_compat
+testsuite/libsixsv.so
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
