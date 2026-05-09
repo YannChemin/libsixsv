@@ -1,9 +1,12 @@
-# lib6sv — 6SV2.1 Atmospheric Correction Library
+# libsixsv — 6SV2.1 Atmospheric Correction Library
+
+> **GitHub**: <https://github.com/yannchemin/libsixsv>
 
 A C11 port of the **6SV2.1** (Second Simulation of the Satellite Signal in the Solar
 Spectrum) radiative transfer model, designed for operational atmospheric correction of
-hyperspectral remote sensing imagery.  The library backs the `i.hyper.atcorr` GRASS GIS
-module but can also be used as a standalone shared library.
+hyperspectral remote sensing imagery.  The library backs the
+[i.hyper.atcorr](https://github.com/yannchemin/i.hyper.atcorr) GRASS GIS module but
+can also be used as a standalone shared library.
 
 ## Features
 
@@ -129,6 +132,11 @@ After installation:
 - Library: `/usr/lib/x86_64-linux-gnu/libsixsv.so.1` (registered with ldconfig)
 - Development symlink: `/usr/lib/x86_64-linux-gnu/libsixsv.so`
 
+For the **Debian standalone build** of
+[i.hyper.atcorr](https://github.com/yannchemin/i.hyper.atcorr), also install
+[libras3d-dev](https://github.com/yannchemin/libras3d) — the GRASS API
+replacement that routes cube I/O through libtiff/libgeotiff and libhdf5.
+
 **Compiling against the installed library**
 
 Place `-lsixsv -lm -fopenmp` **after** the source file on the command line
@@ -193,8 +201,14 @@ LIB_SIXSV=./libsixsv.so python3 -m pytest -v
 - GRASS GIS development environment (GRASS build) **or** GNU Make + standard
   POSIX tools (standalone build)
 
+## Related repositories
+
+| Repository | Relationship | Description |
+|---|---|---|
+| [i.hyper.atcorr](https://github.com/yannchemin/i.hyper.atcorr) | **Downstream consumer** | GRASS GIS module that links libsixsv for 6SV2.1 atmospheric correction of hyperspectral cubes |
+| [libras3d](https://github.com/yannchemin/libras3d) | **Peer — Debian standalone** | Drop-in GRASS raster3d API replacement; used alongside libsixsv when building i.hyper.atcorr without GRASS (`DEBIAN_BUILD=1`) |
+
 ## License
 
-Copyright (C) 2025–2026 Yann.
-Distributed under the **Unlicense** (Unlicense).
-See `COPYING` for the full text.
+This is free and unencumbered software released into the public domain.  
+See <https://unlicense.org> for the full text.

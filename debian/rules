@@ -54,18 +54,26 @@ override_dh_auto_install:
 	# Development symlink
 	cp -Pf libsixsv.so \
 	    debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/
-	# Public headers
+	# Public headers — all of include/
 	install -d debian/tmp/usr/include/sixsv
-	install -m 644 $(INC_DIR)/atcorr.h        debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/brdf.h           debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/retrieve.h       debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/spatial.h        debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/terrain.h        debian/tmp/usr/include/sixsv/
 	install -m 644 $(INC_DIR)/adjacency.h      debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/uncertainty.h    debian/tmp/usr/include/sixsv/
-	install -m 644 $(INC_DIR)/spectral_brdf.h  debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/aerosol_tables.h debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/atcorr.h         debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/brdf.h           debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/gas_tables.h     debian/tmp/usr/include/sixsv/
 	install -m 644 $(INC_DIR)/oe_invert.h      debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/retrieve.h       debian/tmp/usr/include/sixsv/
 	install -m 644 $(INC_DIR)/sixs_ctx.h       debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/solar_table.h    debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/spatial.h        debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/spectral_brdf.h  debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/surface_model.h  debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/terrain.h        debian/tmp/usr/include/sixsv/
+	install -m 644 $(INC_DIR)/uncertainty.h    debian/tmp/usr/include/sixsv/
+	# pkg-config file
+	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig
+	install -m 644 debian/libsixsv.pc \
+	    debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/libsixsv.pc
 
 # ── Shared-library dependencies ───────────────────────────────────────────────
 # On Debian 13 (trixie) libm is a stub; sinf/cosf/powf etc. resolve via libc6.

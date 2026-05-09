@@ -156,3 +156,44 @@ clang -std=c11 -O3 -ffast-math -fPIC \
 
 Same as for the GRASS build: install libRadtran and ensure `uvspec` is on `PATH`
 before calling `atcorr_srf_compute()`.
+
+---
+
+## 3. Debian package
+
+Build and install a native `.deb` for Debian trixie (or any debhelper 13 system):
+
+```sh
+cd libsixsv
+dpkg-buildpackage -b -us -uc
+
+# Packages appear one level up:
+sudo dpkg -i ../libsixsv1_1.0.0-1_amd64.deb \
+              ../libsixsv-dev_1.0.0-1_amd64.deb
+```
+
+The `libsixsv-dev` package installs:
+
+| Path | Contents |
+|---|---|
+| `/usr/lib/x86_64-linux-gnu/libsixsv.so` | Development symlink |
+| `/usr/include/sixsv/*.h` | All 14 public headers |
+| `/usr/lib/x86_64-linux-gnu/pkgconfig/libsixsv.pc` | pkg-config file |
+
+After installation, downstream projects can use pkg-config:
+
+```sh
+pkg-config --cflags libsixsv   # → -I/usr/include/sixsv
+pkg-config --libs   libsixsv   # → -lsixsv
+```
+
+To uninstall:
+
+```sh
+sudo apt-get remove libsixsv1 libsixsv-dev
+```
+
+## License
+
+This is free and unencumbered software released into the public domain.  
+See <https://unlicense.org> for the full text.

@@ -83,11 +83,13 @@ ifeq ($(origin OFFLOAD_FLAGS), undefined)
 
 endif  # origin OFFLOAD_FLAGS
 
-EXTRA_CFLAGS = -O3 -ffast-math $(OPENMP_CFLAGS) $(OFFLOAD_FLAGS) -std=c11 -fPIC \
+EXTRA_CFLAGS = -O3 -ffast-math -fopenmp $(OFFLOAD_FLAGS) -std=c11 -fPIC \
                -Wall -Wextra -Wno-unused-parameter
 
 # Runtime dependencies: OpenMP + libm only (no GRASS libraries)
-LIBES = $(OPENMP_LIBPATH) $(OPENMP_LIB) $(MATHLIB)
+# -lgomp is hardcoded because OPENMP_LIB is empty in GRASS's Platform.make
+# (GRASS itself was not configured with --with-openmp on this host).
+LIBES = $(OPENMP_LIBPATH) -lgomp $(MATHLIB)
 
 include $(MODULE_TOPDIR)/include/Make/Lib.make
 

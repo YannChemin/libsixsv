@@ -4,7 +4,7 @@
 *.so
 *.so.*
 
-# Debian build artifacts
+# Debian build artefacts
 debian/.debhelper/
 debian/tmp/
 debian/files
@@ -13,8 +13,9 @@ debian/*.substvars
 debian/debhelper-build-stamp
 debian/libsixsv1/
 debian/libsixsv-dev/
+debian/libsixsv1-dbgsym/
 
-# Test build artifacts
+# Test build artefacts
 testsuite/test_6sv_compat
 testsuite/libsixsv.so
 
